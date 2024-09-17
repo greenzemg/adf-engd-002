@@ -1,0 +1,44 @@
+{
+	"name": "merged_hackathon_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HackathonService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "defined"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "datasetName",
+				"type": "UTF8"
+			},
+			{
+				"name": "about",
+				"type": "UTF8"
+			},
+			{
+				"name": "link",
+				"type": "UTF8"
+			},
+			{
+				"name": "categoryName",
+				"type": "UTF8"
+			},
+			{
+				"name": "cloud",
+				"type": "UTF8"
+			},
+			{
+				"name": "vintage",
+				"type": "UTF8"
+			}
+		]
+	}
+}

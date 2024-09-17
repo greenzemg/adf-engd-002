@@ -1,0 +1,38 @@
+{
+	"name": "hackathon_to_aggregated_cleanup",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "merged_hackathon_file",
+						"type": "DatasetReference"
+					},
+					"name": "definedFile"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          datasetName as string,",
+				"          about as string,",
+				"          link as string,",
+				"          categoryName as string,",
+				"          cloud as string,",
+				"          vintage as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> definedFile",
+				"definedFile filter(ERROR_FUNCTION('')) ~> filter1"
+			]
+		}
+	}
+}

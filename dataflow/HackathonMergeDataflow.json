@@ -1,0 +1,54 @@
+{
+	"name": "HackathonMergeDataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "groupa"
+				},
+				{
+					"name": "groupb"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "merged_hackathon_file",
+						"type": "DatasetReference"
+					},
+					"name": "StoreIntoDefined"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Merge"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> groupa",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> groupb",
+				"groupa, groupb join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> Merge",
+				"Merge sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          datasetName as string,",
+				"          about as string,",
+				"          link as string,",
+				"          categoryName as string,",
+				"          cloud as string,",
+				"          vintage as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> StoreIntoDefined"
+			]
+		}
+	}
+}

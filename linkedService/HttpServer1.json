@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://raw.githubusercontent.com/ruddra/hackathon-dataset/main",
+			"url": "https://raw.githubusercontent.com/ruddra/hackathon-dataset/main/",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}

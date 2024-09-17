@@ -1,0 +1,48 @@
+{
+	"name": "RawCSVMaas1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SourceStorageLinkedServiceMaas",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "250d4b8b-dfea-43b6-acab-d34a7edfc8ce",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "datasetName",
+				"type": "String"
+			},
+			{
+				"name": "about",
+				"type": "String"
+			},
+			{
+				"name": "link",
+				"type": "String"
+			},
+			{
+				"name": "categoryName",
+				"type": "String"
+			},
+			{
+				"name": "cloud",
+				"type": "String"
+			},
+			{
+				"name": "vintage",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "/bank_users_info_group_a.csv"
+				"relativeUrl": "bank_users_info_group_a.csv"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

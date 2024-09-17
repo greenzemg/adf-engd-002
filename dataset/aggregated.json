@@ -1,0 +1,19 @@
+{
+	"name": "aggregated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SourceStorageLinkedServiceMaas",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "aggregated"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

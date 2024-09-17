@@ -1,0 +1,72 @@
+{
+	"name": "DelimitedText5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sourceStorageLinkedServiceTek",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "bank_users_info_group_b.csv",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "duration",
+				"type": "String"
+			},
+			{
+				"name": "campaign",
+				"type": "String"
+			},
+			{
+				"name": "pdays",
+				"type": "String"
+			},
+			{
+				"name": "previous",
+				"type": "String"
+			},
+			{
+				"name": "poutcome",
+				"type": "String"
+			},
+			{
+				"name": "emp.var.rate",
+				"type": "String"
+			},
+			{
+				"name": "cons.price.idx",
+				"type": "String"
+			},
+			{
+				"name": "cons.conf.idx",
+				"type": "String"
+			},
+			{
+				"name": "euribor3m",
+				"type": "String"
+			},
+			{
+				"name": "nr.employed",
+				"type": "String"
+			},
+			{
+				"name": "y",
+				"type": "String"
+			},
+			{
+				"name": "unique_id",
+				"type": "String"
+			}
+		]
+	}
+}

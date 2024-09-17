@@ -1,0 +1,109 @@
+{
+	"name": "to_cleanup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sourceStorageLinkedServiceTek",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "part-00000-e94716cb-f105-4bbe-93d3-74f0aa1467e3-c000.snappy.parquet",
+				"container": "defined"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "age",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "job",
+				"type": "UTF8"
+			},
+			{
+				"name": "marital",
+				"type": "UTF8"
+			},
+			{
+				"name": "education",
+				"type": "UTF8"
+			},
+			{
+				"name": "default",
+				"type": "UTF8"
+			},
+			{
+				"name": "housing",
+				"type": "UTF8"
+			},
+			{
+				"name": "loan",
+				"type": "UTF8"
+			},
+			{
+				"name": "contact",
+				"type": "UTF8"
+			},
+			{
+				"name": "month",
+				"type": "UTF8"
+			},
+			{
+				"name": "day_of_week",
+				"type": "UTF8"
+			},
+			{
+				"name": "unique_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "duration",
+				"type": "INT_16"
+			},
+			{
+				"name": "campaign",
+				"type": "INT_16"
+			},
+			{
+				"name": "pdays",
+				"type": "INT_16"
+			},
+			{
+				"name": "previous",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "poutcome",
+				"type": "UTF8"
+			},
+			{
+				"name": "emp.var.rate",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "cons.price.idx",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "cons.conf.idx",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "euribor3m",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "nr.employed",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "y",
+				"type": "BOOLEAN"
+			}
+		]
+	}
+}

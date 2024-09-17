@@ -1,0 +1,87 @@
+{
+	"name": "cleanup_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "to_cleanup",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "removepDaysSinkDataSetParquet",
+						"type": "DatasetReference"
+					},
+					"name": "aggregatedsink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "removePdaysEqual999"
+				},
+				{
+					"name": "removeUnknowns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          age as double,",
+				"          job as string,",
+				"          marital as string,",
+				"          education as string,",
+				"          default as string,",
+				"          housing as string,",
+				"          loan as string,",
+				"          contact as string,",
+				"          month as string,",
+				"          day_of_week as string,",
+				"          unique_id as string,",
+				"          duration as short,",
+				"          campaign as short,",
+				"          pdays as short,",
+				"          previous as boolean,",
+				"          poutcome as string,",
+				"          {emp.var.rate} as double,",
+				"          {cons.price.idx} as double,",
+				"          {cons.conf.idx} as double,",
+				"          euribor3m as double,",
+				"          {nr.employed} as double,",
+				"          y as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source1",
+				"source1 filter(notEquals(pdays, 999)) ~> removePdaysEqual999",
+				"removePdaysEqual999 filter(notEquals(job, \"unknown\") && notEquals(marital, \"unknown\") && notEquals(default, \"unknown\") && notEquals(housing, \"unknown\") &&notEquals(loan, \"unknown\")) ~> removeUnknowns",
+				"removeUnknowns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          registration_dttm as timestamp,",
+				"          id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          gender as string,",
+				"          ip_address as string,",
+				"          cc as string,",
+				"          country as string,",
+				"          birthdate as string,",
+				"          salary as double,",
+				"          title as string,",
+				"          comments as string,",
+				"          even_ids as boolean",
+				"     ),",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> aggregatedsink"
+			]
+		}
+	}
+}

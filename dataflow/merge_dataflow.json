@@ -1,0 +1,91 @@
+{
+	"name": "merge_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText4",
+						"type": "DatasetReference"
+					},
+					"name": "groupa"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText5",
+						"type": "DatasetReference"
+					},
+					"name": "groupb"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "defined_sink_hackathon",
+						"type": "DatasetReference"
+					},
+					"name": "definedsink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          age as double,",
+				"          job as string,",
+				"          marital as string,",
+				"          education as string,",
+				"          default as string,",
+				"          housing as string,",
+				"          loan as string,",
+				"          contact as string,",
+				"          month as string,",
+				"          day_of_week as string,",
+				"          unique_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> groupa",
+				"source(output(",
+				"          duration as short,",
+				"          campaign as short,",
+				"          pdays as short,",
+				"          previous as boolean,",
+				"          poutcome as string,",
+				"          {emp.var.rate} as double,",
+				"          {cons.price.idx} as double,",
+				"          {cons.conf.idx} as double,",
+				"          euribor3m as double,",
+				"          {nr.employed} as double,",
+				"          y as boolean,",
+				"          unique_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> groupb",
+				"groupa, groupb join(groupa@unique_id == groupb@unique_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          datasetName as string,",
+				"          about as string,",
+				"          link as string,",
+				"          categoryName as string,",
+				"          cloud as string,",
+				"          vintage as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> definedsink"
+			]
+		}
+	}
+}

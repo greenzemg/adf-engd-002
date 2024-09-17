@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Tekpipeline2",
 	"properties": {
 		"activities": [
 			{
@@ -16,14 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "ParquetReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -47,32 +47,16 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceParquet",
+						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Parquet2",
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Copy data2",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"enableStaging": false
-				}
 			}
 		],
 		"annotations": []

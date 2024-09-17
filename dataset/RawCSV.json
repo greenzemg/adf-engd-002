@@ -1,0 +1,20 @@
+{
+	"name": "RawCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sourceStorageLinkedServiceTek",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "8e6ed9c2-4ca8-449e-be38-61cd38a55733",
+				"container": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

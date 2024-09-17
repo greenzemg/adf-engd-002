@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Mypipeline2",
 	"properties": {
 		"activities": [
 			{
@@ -16,23 +16,24 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
 						},
 						"formatSettings": {
-							"type": "ParquetReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
-							"type": "ParquetWriteSettings"
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -47,32 +48,16 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceParquet",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Copy data2",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"enableStaging": false
-				}
 			}
 		],
 		"annotations": []

@@ -53,7 +53,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DefaultParquet",
+						"referenceName": "Parquet1",
 						"type": "DatasetReference"
 					}
 				]

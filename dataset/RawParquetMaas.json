@@ -1,0 +1,19 @@
+{
+	"name": "RawParquetMaas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SourceStorageLinkedServiceMaas",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
